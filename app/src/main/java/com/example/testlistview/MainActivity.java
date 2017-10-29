@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, animal.name, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(MainActivity.this, AnimalDetailsActivity.class);
+                intent.putExtra("position", i);
                 //intent.putExtra("name", animal.name);
                 //intent.putExtra("picture", animal.picture);
-                intent.putExtra("position", i);
                 startActivity(intent);
             }
         });
