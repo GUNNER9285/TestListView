@@ -1,5 +1,6 @@
 package com.example.testlistview;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ListView mListVew;
-    private ArrayList<Animal> mData;
+    //private ArrayList<Animal> mData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,35 +26,45 @@ public class MainActivity extends AppCompatActivity {
 
         mListVew = (ListView) findViewById(R.id.listView);
 
-        mData = new ArrayList<>();
-        mData.add(new Animal("White Tiger", R.drawable.tiger));
-        mData.add(new Animal("Blue Dragon", R.drawable.dragon));
-        mData.add(new Animal("Black Turtle", R.drawable.turtle));
-        mData.add(new Animal("Red Swan", R.drawable.swan));
-        mData.add(new Animal("Cat", R.drawable.animals_cat));
-        mData.add(new Animal("Dog", R.drawable.animals_dog));
-        mData.add(new Animal("Dolphin", R.drawable.animals_dolphin));
-        mData.add(new Animal("Koala", R.drawable.animals_koala));
-        mData.add(new Animal("Lion", R.drawable.animals_lion));
-        mData.add(new Animal("Owl", R.drawable.animals_owl));
-        mData.add(new Animal("Penguin", R.drawable.animals_penguin));
-        mData.add(new Animal("Pig", R.drawable.animals_pig));
-        mData.add(new Animal("Rabbit", R.drawable.animals_rabbit));
-        mData.add(new Animal("Tiger", R.drawable.animals_tiger));
+        final AnimalData animalData = AnimalData.getInstance();   // global
+        animalData.animalList = new ArrayList<>();          // เรียดสิ่งที่อยู่ข้างใน
+
+        //mData = new ArrayList<>();
+
+        animalData.animalList.add(new Animal("White Tiger", R.drawable.tiger));
+        animalData.animalList.add(new Animal("Blue Dragon", R.drawable.dragon));
+        animalData.animalList.add(new Animal("Black Turtle", R.drawable.turtle));
+        animalData.animalList.add(new Animal("Red Swan", R.drawable.swan));
+        animalData.animalList.add(new Animal("Cat", R.drawable.animals_cat));
+        animalData.animalList.add(new Animal("Dog", R.drawable.animals_dog));
+        animalData.animalList.add(new Animal("Dolphin", R.drawable.animals_dolphin));
+        animalData.animalList.add(new Animal("Koala", R.drawable.animals_koala));
+        animalData.animalList.add(new Animal("Lion", R.drawable.animals_lion));
+        animalData.animalList.add(new Animal("Owl", R.drawable.animals_owl));
+        animalData.animalList.add(new Animal("Penguin", R.drawable.animals_penguin));
+        animalData.animalList.add(new Animal("Pig", R.drawable.animals_pig));
+        animalData.animalList.add(new Animal("Rabbit", R.drawable.animals_rabbit));
+        animalData.animalList.add(new Animal("Tiger", R.drawable.animals_tiger));
 
         AnimalListAdapter adapter = new AnimalListAdapter(
                 this,
                 //android.R.layout.simple_list_item_1,
                 R.layout.item,
-                mData
+                animalData.animalList
         );
         mListVew.setAdapter(adapter);
 
         mListVew.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Animal animal = mData.get(i);
+                Animal animal = animalData.animalList.get(i);
                 Toast.makeText(MainActivity.this, animal.name, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, AnimalDetailsActivity.class);
+                //intent.putExtra("name", animal.name);
+                //intent.putExtra("picture", animal.picture);
+                intent.putExtra("position", i);
+                startActivity(intent);
             }
         });
 
