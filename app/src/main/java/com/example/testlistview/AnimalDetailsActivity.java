@@ -23,7 +23,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         AnimalData animalData = AnimalData.getInstance();
         String name = animalData.animalList.get(position).name;
         int picture = animalData.animalList.get(position).picture;
-        
+
         animalImageView.setImageResource(picture);
         animalTextView.setText(name);
 
