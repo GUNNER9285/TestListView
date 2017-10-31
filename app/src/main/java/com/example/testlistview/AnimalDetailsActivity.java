@@ -14,7 +14,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_animal_details);
 
         ImageView animalImageView = (ImageView)findViewById(R.id.animalImageView);
-        TextView animalTextView = (TextView)findViewById(R.id.animalTextView);
+        TextView detailTextView = (TextView)findViewById(R.id.detailTextView);
 
         Intent intent = getIntent();
         //String name = intent.getStringExtra("name");
@@ -23,9 +23,10 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         AnimalData animalData = AnimalData.getInstance();
         String name = animalData.animalList.get(position).name;
         int picture = animalData.animalList.get(position).picture;
+        int detail = animalData.animalList.get(position).detail;
 
         animalImageView.setImageResource(picture);
-        animalTextView.setText(name);
+        detailTextView.setText(detail);
 
         getSupportActionBar().setTitle(name);
     }

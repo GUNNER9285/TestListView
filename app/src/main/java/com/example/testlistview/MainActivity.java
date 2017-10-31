@@ -31,20 +31,20 @@ public class MainActivity extends AppCompatActivity {
 
         //mData = new ArrayList<>();
 
-        animalData.animalList.add(new Animal("White Tiger", R.drawable.tiger));
-        animalData.animalList.add(new Animal("Blue Dragon", R.drawable.dragon));
-        animalData.animalList.add(new Animal("Black Turtle", R.drawable.turtle));
-        animalData.animalList.add(new Animal("Red Swan", R.drawable.swan));
-        animalData.animalList.add(new Animal("Cat", R.drawable.animals_cat));
-        animalData.animalList.add(new Animal("Dog", R.drawable.animals_dog));
-        animalData.animalList.add(new Animal("Dolphin", R.drawable.animals_dolphin));
-        animalData.animalList.add(new Animal("Koala", R.drawable.animals_koala));
-        animalData.animalList.add(new Animal("Lion", R.drawable.animals_lion));
-        animalData.animalList.add(new Animal("Owl", R.drawable.animals_owl));
-        animalData.animalList.add(new Animal("Penguin", R.drawable.animals_penguin));
-        animalData.animalList.add(new Animal("Pig", R.drawable.animals_pig));
-        animalData.animalList.add(new Animal("Rabbit", R.drawable.animals_rabbit));
-        animalData.animalList.add(new Animal("Tiger", R.drawable.animals_tiger));
+        //animalData.animalList.add(new Animal("White Tiger", R.drawable.tiger));
+        //animalData.animalList.add(new Animal("Blue Dragon", R.drawable.dragon));
+        //animalData.animalList.add(new Animal("Black Turtle", R.drawable.turtle));
+        //animalData.animalList.add(new Animal("Red Swan", R.drawable.swan));
+        animalData.animalList.add(new Animal("แมว (Cat)", R.drawable.animals_cat, R.string.details_cat));
+        animalData.animalList.add(new Animal("หมา (Dog)", R.drawable.animals_dog, R.string.details_dog));
+        animalData.animalList.add(new Animal("โลมา (Dolphin)", R.drawable.animals_dolphin, R.string.details_dolphin));
+        animalData.animalList.add(new Animal("โคอาลา (Koala)", R.drawable.animals_koala, R.string.details_koala));
+        animalData.animalList.add(new Animal("สิงโต (Lion)", R.drawable.animals_lion, R.string.details_lion));
+        animalData.animalList.add(new Animal("นกฮูก (Owl)", R.drawable.animals_owl, R.string.details_owl));
+        animalData.animalList.add(new Animal("เพนกวิน (Penguin)", R.drawable.animals_penguin, R.string.details_penguin));
+        animalData.animalList.add(new Animal("หมู (Pig)", R.drawable.animals_pig, R.string.details_pig));
+        animalData.animalList.add(new Animal("กระต่าย (Rabbit)", R.drawable.animals_rabbit, R.string.details_rabbit));
+        animalData.animalList.add(new Animal("เสือ (Tiger)", R.drawable.animals_tiger, R.string.details_tiger));
 
         AnimalListAdapter adapter = new AnimalListAdapter(
                 this,
