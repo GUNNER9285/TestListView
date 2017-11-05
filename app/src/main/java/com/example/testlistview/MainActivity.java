@@ -3,6 +3,9 @@ package com.example.testlistview;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListVew;
     //private ArrayList<Animal> mData;
 
+    private final AnimalData animalData = AnimalData.getInstance();   // global
+
+    private AnimalListAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         mListVew = (ListView) findViewById(R.id.listView);
 
-        final AnimalData animalData = AnimalData.getInstance();   // global
         animalData.animalList = new ArrayList<>();               // เรียดสิ่งที่อยู่ข้างใน
 
         //mData = new ArrayList<>();
-        
+
         //animalData.animalList.add(new Animal("White Tiger", R.drawable.tiger));
         //animalData.animalList.add(new Animal("Blue Dragon", R.drawable.dragon));
         //animalData.animalList.add(new Animal("Black Turtle", R.drawable.turtle));
@@ -46,13 +52,14 @@ public class MainActivity extends AppCompatActivity {
         animalData.animalList.add(new Animal("กระต่าย (Rabbit)", R.drawable.animals_rabbit, R.string.details_rabbit));
         animalData.animalList.add(new Animal("เสือ (Tiger)", R.drawable.animals_tiger, R.string.details_tiger));
 
-        AnimalListAdapter adapter = new AnimalListAdapter(
+        mAdapter = new AnimalListAdapter(
                 this,
                 //android.R.layout.simple_list_item_1,
                 R.layout.item,
                 animalData.animalList
         );
-        mListVew.setAdapter(adapter);
+
+        mListVew.setAdapter(mAdapter);
 
         mListVew.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -67,6 +74,34 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) { // Method Inflate Menu
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu); // เริ่ม Inflate menu
+        return super.onCreateOptionsMenu(menu); // ไปแสดงผลที่ Activity
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) { // Method ทำงานหลังกด Menu
+        int itemId = item.getItemId();
+        switch (itemId){
+            case R.id.action_add :
+                addAnimal();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void addAnimal() {
+        Animal a = new Animal(
+                "เสือขาว (White Tiger)",
+                R.drawable.tiger,
+                R.string.details_wTiger
+        );
+        animalData.animalList.add(a);
+        mAdapter.notifyDataSetChanged(); // ทำหน้่าที่ แจ้ง Adapter ว่าข้อมูลมีการเปลี่ยนแปลง ให้กลับไปอ่านข้อมูลมาใหม่
     }
 }
