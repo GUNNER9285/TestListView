@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
         mListVew = (ListView) findViewById(R.id.listView);
 
         final AnimalData animalData = AnimalData.getInstance();   // global
-        animalData.animalList = new ArrayList<>();          // เรียดสิ่งที่อยู่ข้างใน
+        animalData.animalList = new ArrayList<>();               // เรียดสิ่งที่อยู่ข้างใน
 
         //mData = new ArrayList<>();
-
+        
         //animalData.animalList.add(new Animal("White Tiger", R.drawable.tiger));
         //animalData.animalList.add(new Animal("Blue Dragon", R.drawable.dragon));
         //animalData.animalList.add(new Animal("Black Turtle", R.drawable.turtle));
