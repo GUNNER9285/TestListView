@@ -1,14 +1,13 @@
 package com.example.testlistview;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,16 +40,16 @@ public class MainActivity extends AppCompatActivity {
         //animalData.animalList.add(new Animal("Blue Dragon", R.drawable.dragon));
         //animalData.animalList.add(new Animal("Black Turtle", R.drawable.turtle));
         //animalData.animalList.add(new Animal("Red Swan", R.drawable.swan));
-        animalData.animalList.add(new Animal("แมว (Cat)", R.drawable.animals_cat, R.string.details_cat));
-        animalData.animalList.add(new Animal("หมา (Dog)", R.drawable.animals_dog, R.string.details_dog));
-        animalData.animalList.add(new Animal("โลมา (Dolphin)", R.drawable.animals_dolphin, R.string.details_dolphin));
-        animalData.animalList.add(new Animal("โคอาลา (Koala)", R.drawable.animals_koala, R.string.details_koala));
-        animalData.animalList.add(new Animal("สิงโต (Lion)", R.drawable.animals_lion, R.string.details_lion));
-        animalData.animalList.add(new Animal("นกฮูก (Owl)", R.drawable.animals_owl, R.string.details_owl));
-        animalData.animalList.add(new Animal("เพนกวิน (Penguin)", R.drawable.animals_penguin, R.string.details_penguin));
-        animalData.animalList.add(new Animal("หมู (Pig)", R.drawable.animals_pig, R.string.details_pig));
-        animalData.animalList.add(new Animal("กระต่าย (Rabbit)", R.drawable.animals_rabbit, R.string.details_rabbit));
-        animalData.animalList.add(new Animal("เสือ (Tiger)", R.drawable.animals_tiger, R.string.details_tiger));
+        animalData.animalList.add(new Animal("แมว (Cat)", "animals_cat.png", getString(R.string.details_cat)));
+        animalData.animalList.add(new Animal("หมา (Dog)", "animals_dog.png", getString(R.string.details_dog)));
+        animalData.animalList.add(new Animal("โลมา (Dolphin)", "animals_dolphin.png", getString(R.string.details_dolphin)));
+        animalData.animalList.add(new Animal("โคอาลา (Koala)", "animals_koala.png", getString(R.string.details_koala)));
+        animalData.animalList.add(new Animal("สิงโต (Lion)", "animals_lion.png", getString(R.string.details_lion)));
+        animalData.animalList.add(new Animal("นกฮูก (Owl)", "animals_owl.png", getString(R.string.details_owl)));
+        animalData.animalList.add(new Animal("เพนกวิน (Penguin)", "animals_penguin.png", getString(R.string.details_penguin)));
+        animalData.animalList.add(new Animal("หมู (Pig)", "animals_pig.png", getString(R.string.details_pig)));
+        animalData.animalList.add(new Animal("กระต่าย (Rabbit)", "animals_rabbit.png", getString(R.string.details_rabbit)));
+        animalData.animalList.add(new Animal("เสือ (Tiger)", "animals_tiger.png", getString(R.string.details_tiger)));
 
         mAdapter = new AnimalListAdapter(
                 this,
@@ -98,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
     private void addAnimal() {
         Animal a = new Animal(
                 "เสือขาว (White Tiger)",
-                R.drawable.tiger,
-                R.string.details_wTiger
+                "tiger.jpg",
+                getString(R.string.details_wTiger)
         );
         animalData.animalList.add(a);
         mAdapter.notifyDataSetChanged(); // ทำหน้่าที่ แจ้ง Adapter ว่าข้อมูลมีการเปลี่ยนแปลง ให้กลับไปอ่านข้อมูลมาใหม่
