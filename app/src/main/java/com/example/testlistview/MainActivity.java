@@ -1,6 +1,8 @@
 package com.example.testlistview;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.testlistview.adapter.AnimalListAdapter;
+import com.example.testlistview.db.DatabaseHelper;
 import com.example.testlistview.model.Animal;
 
 import java.util.ArrayList;
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private final AnimalData animalData = AnimalData.getInstance();   // global
 
     private AnimalListAdapter mAdapter;
+
+    private DatabaseHelper mHelper;
+    private SQLiteDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,32 @@ public class MainActivity extends AppCompatActivity {
         //animalData.animalList.add(new Animal("Blue Dragon", R.drawable.dragon));
         //animalData.animalList.add(new Animal("Black Turtle", R.drawable.turtle));
         //animalData.animalList.add(new Animal("Red Swan", R.drawable.swan));
+
+        mHelper = new DatabaseHelper(this);
+        mDatabase = mHelper.getWritableDatabase();
+
+        /*ContentValues cv = new ContentValues();
+        cv.put(DatabaseHelper.COL_NAME, "Blue Dragon");
+        cv.put(DatabaseHelper.COL_PICTURE, "dragon.jpg");
+        cv.put(DatabaseHelper.COL_DEATIL, getString(R.string.details_bDragon));
+        mDatabase.insert(DatabaseHelper.TABLE_NAME, null, cv);*/
+
+        Cursor cursor = mDatabase.query(
+                DatabaseHelper.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        while(cursor.moveToNext()){
+            String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_NAME));
+            String picture = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_PICTURE));
+            String detail = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_DEATIL));
+            animalData.animalList.add(new Animal(name, picture, detail));
+        }
+        /*
         animalData.animalList.add(new Animal("แมว (Cat)", "animals_cat.png", getString(R.string.details_cat)));
         animalData.animalList.add(new Animal("หมา (Dog)", "animals_dog.png", getString(R.string.details_dog)));
         animalData.animalList.add(new Animal("โลมา (Dolphin)", "animals_dolphin.png", getString(R.string.details_dolphin)));
@@ -50,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         animalData.animalList.add(new Animal("หมู (Pig)", "animals_pig.png", getString(R.string.details_pig)));
         animalData.animalList.add(new Animal("กระต่าย (Rabbit)", "animals_rabbit.png", getString(R.string.details_rabbit)));
         animalData.animalList.add(new Animal("เสือ (Tiger)", "animals_tiger.png", getString(R.string.details_tiger)));
-
+        */
         mAdapter = new AnimalListAdapter(
                 this,
                 //android.R.layout.simple_list_item_1,
